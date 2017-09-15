@@ -1,4 +1,4 @@
-import * as data from "../questions.json";
+import * as data from "./questions.json";
 
 export function getRandomQuestionByLevel(level) {
     const questions = data.questions[level];
