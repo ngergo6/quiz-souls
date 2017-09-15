@@ -1,2 +1,2 @@
-install:
-  - yarn install
+language: node_js
+install: yarn install
