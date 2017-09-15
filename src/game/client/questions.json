@@ -1,0 +1,69 @@
+{
+	"questions": {
+		"0": [
+			{
+				"text": "What is the name of the first boss you encounter in Dark Souls 1?",
+				"answers": [
+					{
+						"text": "Asylum Demon",
+						"isCorrect": true
+					},
+					{
+						"text": "Stray Demon"
+					},
+					{
+						"text": "Taurus Demon"
+					},
+					{
+						"text": "Last Giant"
+					}
+				]
+			}
+		],
+		"1": [
+            {
+				"text": "Which of the following is not a name of a boss in Dark Souls 1?",
+				"answers": [
+					{
+						"text": "Moonlight Butterfly"
+					},
+					{
+						"text": "Iron Golem"
+					},
+					{
+						"text": "Smelter Demon",
+						"isCorrect": true
+					},
+					{
+                        "text": "Gwyndolin"
+                    }
+				]
+			}
+        ],
+		"2": [
+            {
+                "text": "Which of the following items are not in Dark Souls 2?",
+                "answers": [
+                    {
+                        "text": "Occult Club",
+                        "isCorrect": true
+                    },
+                    {
+                        "text": "Flamberge"
+                    },
+                    {
+                        "text": "Royal Soldier's Ring"
+                    },
+                    {
+                        "text": "Mailbreaker"
+                    }
+                ]
+            }
+        ]
+	},
+	"levels": {
+        "0": "Pinwheel",
+        "1": "Asylum Demon",
+        "2": "Taurus Demon"
+    }
+}
