@@ -9,20 +9,15 @@ module.exports = {
         filename: "[name]/public/dist/bundle.js",
         path: path.resolve(__dirname, "./src")
     },
+    devtool: "source-map",
     plugins: [],
     resolve: {
-        extensions: [".js", ".jsx", ".json"]
+        extensions: [".js", ".jsx", ".json", ".ts"]
     },
     module: {
-        loaders: [
-            {
-                test: /\.jsx$/,
-                exclude: /node_modules/,
-                loader: "babel-loader",
-                options: {
-                    presets: ["react"]
-                }
-            }
+        rules: [
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            { test: /\.jsx?$/, loader: "awesome-typescript-loader" }
         ]
     }
 }
