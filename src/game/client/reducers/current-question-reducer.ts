@@ -1,11 +1,17 @@
 import { Action } from "../types/Action";
-import { LOAD_QUESTION } from "../actions/action-names";
-import { LoadNextQuestionAction } from "../actions/current-question-actions";
+import { LOAD_QUESTION_FAILURE, LOAD_QUESTION_SUCCESS } from "../actions/action-names";
+import { LoadQuestionResultAction } from "../actions/current-question-actions";
 
 export interface CurrentQuestion {
     text: string;
-    answers: string[];
+    answers: Answer[];
     level: number;
+    id: number;
+}
+
+export interface Answer {
+    text: string;
+    id: number;
 }
 
 export function currentQuestionReducer(state: CurrentQuestion, action: Action): CurrentQuestion {
@@ -14,25 +20,33 @@ export function currentQuestionReducer(state: CurrentQuestion, action: Action): 
     }
 
     switch(action.type) {
-        case LOAD_QUESTION:
-            return loadNextQuestion(state, action as LoadNextQuestionAction);
+        case LOAD_QUESTION_SUCCESS:
+            return loadQuestionSuccess(state, action as LoadQuestionResultAction);
+        case LOAD_QUESTION_FAILURE:
+            return loadQuestionFailure(state, action);
         default:
             return state;
     }
 }
 
-function loadNextQuestion(state: CurrentQuestion, action: LoadNextQuestionAction): CurrentQuestion {
+function loadQuestionFailure(state: CurrentQuestion, action: Action): CurrentQuestion {
+    return state;
+}
+
+function loadQuestionSuccess(state: CurrentQuestion, action: LoadQuestionResultAction): CurrentQuestion {
     return {
-        answers: [ "a1", "a2", "a3", "a4" ],
-        level: action.currentLevel,
-        text: "Which is the right answer?"
+        answers: action.question.answers,
+        level: action.level,
+        text: action.question.text,
+        id: action.question.id
     }
 }
 
 function getInitialState(): CurrentQuestion {
     return {
-        answers: ["initial", "state", "1", "2"],
+        answers: [],
         level: 0,
-        text: "Initial state"
+        text: "Initial state",
+        id: 0
     };
 }

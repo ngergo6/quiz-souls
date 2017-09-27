@@ -2,62 +2,77 @@
 	"questions": {
 		"0": [
 			{
+				"id": 1,
 				"text": "What is the name of the first boss you encounter in Dark Souls 1?",
 				"answers": [
 					{
-						"text": "Asylum Demon",
-						"isCorrect": true
+						"id": 1,
+						"text": "Asylum Demon"
 					},
 					{
+						"id": 2,
 						"text": "Stray Demon"
 					},
 					{
+						"id": 3,
 						"text": "Taurus Demon"
 					},
 					{
+						"id": 4,
 						"text": "Last Giant"
 					}
-				]
+				],
+				"correctAnswer": 1
 			}
 		],
 		"1": [
             {
+				"id": 1,
 				"text": "Which of the following is not a name of a boss in Dark Souls 1?",
 				"answers": [
 					{
+						"id": 1,
 						"text": "Moonlight Butterfly"
 					},
 					{
+						"id": 2,
 						"text": "Iron Golem"
 					},
 					{
-						"text": "Smelter Demon",
-						"isCorrect": true
+						"id": 3,
+						"text": "Smelter Demon"
 					},
 					{
+						"id": 4,
                         "text": "Gwyndolin"
                     }
-				]
+				],
+				"correctAnswer": 3
 			}
         ],
 		"2": [
             {
+				"id": 1,
                 "text": "Which of the following items are not in Dark Souls 2?",
                 "answers": [
                     {
-                        "text": "Occult Club",
-                        "isCorrect": true
+						"id": 1,
+                        "text": "Occult Club"
                     },
                     {
+						"id": 2,
                         "text": "Flamberge"
                     },
                     {
+						"id": 3,
                         "text": "Royal Soldier's Ring"
                     },
                     {
+						"id": 4,
                         "text": "Mailbreaker"
                     }
-                ]
+				],
+				"correctAnswer": 1
             }
         ]
 	},

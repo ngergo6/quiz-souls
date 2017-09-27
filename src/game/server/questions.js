@@ -25,7 +25,11 @@ function getNextQuestion(req, res) {
         return;
     }
 
-    res.json(response);
+    res.json({
+        id: response.id,
+        text: response.text,
+        answers: response.answers
+    });
 }
 
 function getRandomNumber(ceiling) {

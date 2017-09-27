@@ -8,11 +8,21 @@ export interface QuestionProps {
 	answers: any[];
 }
 
+function renderAnswers(answers: any[]) {
+	return answers.map(({ text, id }: any, key: number) => {
+		return (
+			<button>
+				{text}
+			</button>
+		);
+	});
+}
+
 export function QuestionComponent({ level, answers, text }: QuestionProps) {
 	return (
 		<div style={{ flexDirection: "row" }}>
 			<div style={{ flex: 3 }}>{text}</div>
-			<div style={{ flex: 2 }}>{answers.join(", ")}</div>
+			<div style={{ flex: 2 }}>{renderAnswers(answers)}</div>
 		</div>
 	);
 }
