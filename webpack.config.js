@@ -12,7 +12,7 @@ module.exports = {
     devtool: "source-map",
     plugins: [],
     resolve: {
-        extensions: [".js", ".jsx", ".json", ".ts"]
+        extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
     },
     module: {
         rules: [
