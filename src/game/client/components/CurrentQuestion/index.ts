@@ -8,12 +8,7 @@ export const CurrentQuestion = connect(
 )(QuestionComponent);
 
 function mapStateToProps(state: ApplicationState, ownProps: any) {
-    //return state.currentQuestion;
-    return {
-        answers: ["1", "2", "3", "4"],
-        level: 1,
-        text: "ok"
-    } as QuestionProps;
+    return state.currentQuestion;
 }
 
 function mapDispatchToProps(dispatch: Function) {
