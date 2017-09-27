@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
     entry: {
-        game: "./src/game/client/index.jsx",
+        game: "./src/game/client/index.tsx",
         overlay: "./src/overlay/client/index.js"
     },
     output: {
@@ -16,8 +16,8 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-            { test: /\.jsx?$/, loader: "awesome-typescript-loader" }
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader", exclude: path.resolve(__dirname, "./node_modules") },
+            { test: /\.jsx?$/, loader: "awesome-typescript-loader", exclude: path.resolve(__dirname, "./node_modules") }
         ]
     }
 }

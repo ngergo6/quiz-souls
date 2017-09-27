@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import { Header } from "./Header";
-import { Questions } from "./Questions";
+import { CurrentQuestion } from "./CurrentQuestion";
 
 export function Main() {
 	return (
@@ -10,7 +10,7 @@ export function Main() {
 					<Header />
 				</div>
 				<div style={{ flex: 8 }}>
-                    <Questions />
+                    <CurrentQuestion />
                 </div>
 			</div>
 			<div style={{ flex: 1 }}>sidebar</div>
