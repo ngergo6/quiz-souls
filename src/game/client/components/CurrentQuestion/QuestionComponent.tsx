@@ -1,6 +1,7 @@
 import * as propTypes from "prop-types";
 import * as React from "react";
 import { PropTypesValidator } from "../../types/PropTypesValidator";
+import { CurrentAnswers } from "../CurrentAnswers";
 
 export interface QuestionProps {
 	level: number;
@@ -8,21 +9,11 @@ export interface QuestionProps {
 	answers: any[];
 }
 
-function renderAnswers(answers: any[]) {
-	return answers.map(({ text, id }: any, key: number) => {
-		return (
-			<button>
-				{text}
-			</button>
-		);
-	});
-}
-
 export function QuestionComponent({ level, answers, text }: QuestionProps) {
 	return (
 		<div style={{ flexDirection: "row" }}>
 			<div style={{ flex: 3 }}>{text}</div>
-			<div style={{ flex: 2 }}>{renderAnswers(answers)}</div>
+			<CurrentAnswers />
 		</div>
 	);
 }
