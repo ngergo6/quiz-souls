@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Header } from "./Header";
 import { CurrentQuestion } from "./CurrentQuestion";
+import { Score } from "./Score";
 
 export function Main() {
 	return (
@@ -13,7 +14,7 @@ export function Main() {
                     <CurrentQuestion />
                 </div>
 			</div>
-			<div style={{ flex: 1 }}>sidebar</div>
+			<div style={{ flex: 1 }}>Current score: <Score /></div>
 		</div>
 	);
 }
