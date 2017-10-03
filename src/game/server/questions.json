@@ -77,8 +77,21 @@
         ]
 	},
 	"levels": {
-        "0": "Pinwheel",
-        "1": "Asylum Demon",
-        "2": "Taurus Demon"
+		"0": {
+			"text": "Pinwheel",
+			"score": 1000
+		},
+		"1": {
+			"text": "Asylum Demon",
+			"score": 3000
+		},
+		"2": {
+			"text": "Taurus Demon",
+			"score": 5000
+		},
+		"3": {
+			"text": "level3",
+			"score": 10000
+		}
     }
 }
