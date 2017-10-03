@@ -1,5 +1,5 @@
 const { getQuestionByLevelAndId, getRandomQuestionByLevel } = require("./services/questions-service");
-const { getLevel } = require("./services/levels-service");
+const { getLevel, getAllLevels } = require("./services/levels-service");
 
 function addRoutes(app) {
 	app.get("/questionByLevel/:level", getNextQuestion);
@@ -64,7 +64,13 @@ function getLevelById(req, res) {
 }
 
 function getLevels(req, res) {
-    
+    const levels = getAllLevels();
+
+    res.json(levels.map(level => ({
+        id: level.id,
+        text: level.text,
+        score: level.score
+    })));
 }
 
 module.exports = {
