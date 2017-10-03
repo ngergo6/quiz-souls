@@ -4,10 +4,14 @@ export interface AnswerProps {
     text: string;
     id: number;
     letter: string;
+    levelId: number;
+    questionId: number;
+
+    onClick: Function;
 }
 
-export function AnswerComponent({ text, letter }: AnswerProps) {
+export function AnswerComponent({ text, letter, onClick }: AnswerProps) {
     return (
-        <button>{letter.toUpperCase()}: {text}</button>
+        <button onClick={() => onClick()}>{letter.toUpperCase()}: {text}</button>
     );
 }
