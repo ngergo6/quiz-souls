@@ -20,18 +20,10 @@ function renderAnswer(answer: AnswerProps, levelId: number, questionId: number, 
 
 	const { text, id, letter } = answer;;
 
-	console.log("--------");
-	console.log("id", id);
-	console.log("text", text);
-	console.log("letter", letter);
-	console.log("--------");
-
 	return <AnswerComponent text={text} id={id} letter={letter} levelId={levelId} questionId={questionId} onClick={submitAnswer.bind(null, levelId, questionId, id)} />;
 }
 
 export function AnswersListComponent({ answers, submitAnswer, levelId, questionId }: AnswerListProps) {
-	console.log("answers", answers);
-
 	return (
 		<div style={{ flex: 2, flexDirection: "column" }}>
 			<div style={{ flexDirection: "row" }}>
