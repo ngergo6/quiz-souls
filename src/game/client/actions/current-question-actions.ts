@@ -2,7 +2,7 @@ import { LOAD_QUESTION_FAILURE, LOAD_QUESTION_SUCCESS } from "./action-names";
 import { Action } from "../types/Action";
 import { ServerQuestion } from "../types/ServerQuestion";
 import { AnswerCheckResult } from "../types/AnswerCheckResult";
-import { addScore } from "./score-actions";
+import { addScore, resetScore } from "./score-actions";
 import { getQuestionByLevel, checkAnswer as checkAnswerApi } from "../api-clients/questions-client";
 
 export function loadQuestion(level: number): Function {
@@ -39,8 +39,10 @@ export function checkAnswer(levelId: number, questionId: number, answerId: numbe
                 if (answerResult.isCorrect) {
                     // TODO: handle overflow
                     dispatch(loadQuestion(levelId + 1));
+                    dispatch(addScore(answerResult.score));
                 } else {
-                    dispatch(loadQuestion(0))
+                    dispatch(resetScore());
+                    dispatch(loadQuestion(0));
                 }
             })
             .catch(() => {
