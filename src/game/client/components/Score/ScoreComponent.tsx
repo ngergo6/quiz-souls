@@ -5,5 +5,5 @@ export interface ScoreProps {
 }
 
 export function ScoreComponent({ score }: ScoreProps) {
-	return <div>{score}</div>;
+	return <div>Current score: {score}</div>;
 }

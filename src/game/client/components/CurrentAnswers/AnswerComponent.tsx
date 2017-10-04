@@ -7,11 +7,18 @@ export interface AnswerProps {
     levelId: number;
     questionId: number;
 
-    onClick: Function;
+    submitAnswer: Function;
 }
 
-export function AnswerComponent({ text, letter, onClick }: AnswerProps) {
+function onClick(submitAnswer: Function) {
+    return (event: React.MouseEvent<HTMLButtonElement>) => {
+        submitAnswer();
+        event.currentTarget.blur();
+    };
+}
+
+export function AnswerComponent({ text, letter, submitAnswer }: AnswerProps) {
     return (
-        <button onClick={() => onClick()}>{letter.toUpperCase()}: {text}</button>
+        <button style={{width: "100%"}} className="btn btn-primary" onClick={onClick(submitAnswer)}>{letter.toUpperCase()}: {text}</button>
     );
 }

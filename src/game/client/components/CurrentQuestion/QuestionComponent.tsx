@@ -11,8 +11,8 @@ export interface QuestionProps {
 
 export function QuestionComponent({ level, answers, text }: QuestionProps) {
 	return (
-		<div style={{ flexDirection: "row" }}>
-			<div style={{ flex: 3 }}>{text}</div>
+		<div>
+			<h3>{text}</h3>
 			<CurrentAnswers />
 		</div>
 	);

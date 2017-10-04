@@ -20,19 +20,27 @@ function renderAnswer(answer: AnswerProps, levelId: number, questionId: number, 
 
 	const { text, id, letter } = answer;;
 
-	return <AnswerComponent text={text} id={id} letter={letter} levelId={levelId} questionId={questionId} onClick={submitAnswer.bind(null, levelId, questionId, id)} />;
+	return <AnswerComponent text={text} id={id} letter={letter} levelId={levelId} questionId={questionId} submitAnswer={submitAnswer.bind(null, levelId, questionId, id)} />;
 }
 
 export function AnswersListComponent({ answers, submitAnswer, levelId, questionId }: AnswerListProps) {
 	return (
-		<div style={{ flex: 2, flexDirection: "column" }}>
-			<div style={{ flexDirection: "row" }}>
-				{renderAnswer(answers[0], levelId, questionId, submitAnswer)}
-				{renderAnswer(answers[1], levelId, questionId, submitAnswer)}
+		<div>
+			<div className="row" style={{ marginBottom: 10 }}>
+				<div className="col-md-4">
+					{renderAnswer(answers[0], levelId, questionId, submitAnswer)}
+				</div>
+				<div className="col-md-4">
+					{renderAnswer(answers[1], levelId, questionId, submitAnswer)}
+				</div>
 			</div>
-			<div style={{ flexDirection: "row" }}>
-				{renderAnswer(answers[2], levelId, questionId, submitAnswer)}
-				{renderAnswer(answers[3], levelId, questionId, submitAnswer)}
+			<div className="row">
+				<div className="col-md-4">
+					{renderAnswer(answers[2], levelId, questionId, submitAnswer)}
+				</div>
+				<div className="col-md-4">
+					{renderAnswer(answers[3], levelId, questionId, submitAnswer)}
+				</div>
 			</div>
 		</div>
 	);

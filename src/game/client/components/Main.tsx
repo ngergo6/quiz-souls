@@ -5,16 +5,16 @@ import { Score } from "./Score";
 
 export function Main() {
 	return (
-		<div style={{ display: "flex", flexDirection: "row", width: "100%", height: "100%", position: "absolute" }}>
-			<div style={{ flexDirection: "column", flex: 6 }}>
-				<div style={{ flex: 1 }}>
+		<div className="container">
+			<div className="row">
+				<div className="col-md-10">
 					<Header />
+					<CurrentQuestion />
 				</div>
-				<div style={{ flex: 8 }}>
-                    <CurrentQuestion />
-                </div>
+				<div className="col-md-2">
+					<Score />
+				</div>
 			</div>
-			<div style={{ flex: 1 }}>Current score: <Score /></div>
 		</div>
 	);
 }
