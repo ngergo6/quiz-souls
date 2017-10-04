@@ -16,10 +16,10 @@ function mapStateToProps(state: ApplicationState) {
         answers: state.currentQuestion.answers.map((answer, index) => ({
             text: answer.text,
             id: answer.id,
-            letter: String.fromCharCode(a + index),
-            levelId: state.currentQuestion.level,
-            questionId: state.currentQuestion.id
-        }))
+            letter: String.fromCharCode(a + index)
+        })),
+        levelId: state.currentQuestion.level,
+        questionId: state.currentQuestion.id
     } as AnswersListDataProps;
 }
 
