@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Main } from "./components/Main";
 import { reducers } from "./reducers";
-import { loadQuestion } from "./actions/current-question-actions";
+import { startApplication } from "./actions/application-lifecycle-actions";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 document.addEventListener("DOMContentLoaded", bootstrap);
@@ -20,5 +20,5 @@ function bootstrap() {
 		document.getElementById("app")
 	);
 
-	store.dispatch(loadQuestion(0) as any);
+	store.dispatch(startApplication() as any);
 }
