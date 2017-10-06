@@ -38,16 +38,31 @@ export function checkAnswer(levelId: number, questionId: number, answerId: numbe
         checkAnswerApi(levelId, questionId, answerId)
             .then((answerResult: AnswerCheckResult) => {
                 if (answerResult.isCorrect) {
-                    // TODO: handle overflow
-                    dispatch(loadQuestion(levelId + 1));
-                    dispatch(addScore(answerResult.score));
+                    const state = getState();
+
+                    getLoadNextQuestion(dispatch, state)(answerResult, levelId);
                 } else {
                     dispatch(resetScore());
                     dispatch(loadQuestion(0));
                 }
             })
             .catch(() => {
-                // TODO: handle
+                // TODO: handle error
                 console.log("error");
             });
+}
+
+function getLoadNextQuestion(dispatch: Function, state: ApplicationState) {
+    return function (answerResult: AnswerCheckResult, levelId: number): void {
+        const nextLevelId: number = levelId + 1;
+
+        // todo: check game completed instead
+
+        if (nextLevelId < state.levels.length) {
+            dispatch(loadQuestion(nextLevelId));
+            dispatch(addScore(answerResult.score));
+        } else {
+            // todo: handle game completed
+        }
+    };
 }
