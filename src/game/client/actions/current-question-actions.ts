@@ -4,6 +4,7 @@ import { ServerQuestion } from "../types/ServerQuestion";
 import { AnswerCheckResult } from "../types/AnswerCheckResult";
 import { addScore, resetScore } from "./score-actions";
 import { getQuestionByLevel, checkAnswer as checkAnswerApi } from "../api-clients/questions-client";
+import { ApplicationState } from "../reducers/ApplicationState";
 
 export function loadQuestion(level: number): Function {
     return function(dispatch: Function) {
@@ -33,7 +34,7 @@ export function loadQuestionFailure(): Action {
 }
 
 export function checkAnswer(levelId: number, questionId: number, answerId: number): Function {
-    return (dispatch: Function) => 
+    return (dispatch: Function, getState: () => ApplicationState) => 
         checkAnswerApi(levelId, questionId, answerId)
             .then((answerResult: AnswerCheckResult) => {
                 if (answerResult.isCorrect) {

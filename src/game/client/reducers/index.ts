@@ -6,8 +6,3 @@ export const reducers = combineReducers({
     currentQuestion: currentQuestionReducer,
     score: scoreReducer
 });
-
-export interface ApplicationState {
-    currentQuestion: CurrentQuestion,
-    score: number
-}

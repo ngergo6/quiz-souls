@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { ScoreComponent, ScoreProps } from "./ScoreComponent";
-import { ApplicationState } from "../../reducers";
+import { ApplicationState } from "../../reducers/ApplicationState";
 
 export const Score = connect(
     mapStateToProps,

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { QuestionComponent, QuestionProps } from "./QuestionComponent";
-import { ApplicationState } from "../../reducers";
+import { ApplicationState } from "../../reducers/ApplicationState";
 
 export const CurrentQuestion = connect(
     mapStateToProps,

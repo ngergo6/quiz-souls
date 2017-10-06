@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { ApplicationState } from "../../reducers/index";
+import { ApplicationState } from "../../reducers/ApplicationState";
 import { AnswersListComponent, AnswersListDataProps, AnswerListActions } from "./AnswersListComponent";
 import { AnswerProps } from "./AnswerComponent";
 import { checkAnswer } from "../../actions/current-question-actions";
