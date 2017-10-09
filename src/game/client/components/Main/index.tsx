@@ -5,6 +5,7 @@ import { ApplicationState } from "../../reducers/ApplicationState";
 import { GameState } from "../../types/GameState";
 import { StartScreen } from "../StartScreen";
 import { Game } from "../Game";
+import { EndScreen } from "../EndScreen";
 
 export const Main = connect(
     mapStateToProps,
@@ -26,12 +27,14 @@ function mapDispatchToProps(): MainComponentActionProps {
 }
 
 function getActiveComponent(gameState: GameState): React.ReactElement<any> {
-	if (gameState === "not-started-yet") {
-		return <StartScreen />;
-	} else if (gameState === "running") {
-		return <Game />;
-	} else {
-		// todo: handle other cases
-		return <StartScreen />;
-	}
+    switch (gameState) {
+        case "running":
+            return <Game />;
+        case "not-started-yet":
+            return <StartScreen />;
+        case "game-over-lost":
+        case "game-over-won":
+        default:
+            return <EndScreen />
+    }
 }

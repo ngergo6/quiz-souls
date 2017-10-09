@@ -5,7 +5,7 @@ import { AnswerCheckResult } from "../types/AnswerCheckResult";
 import { addScore  } from "./score-actions";
 import { getQuestionByLevel, checkAnswer as checkAnswerApi } from "../api-clients/questions-client";
 import { ApplicationState } from "../reducers/ApplicationState";
-import { initGame } from "./game-state-actions";
+import { initGame, loseGame, winGame } from "./game-state-actions";
 
 export function loadQuestion(level: number): Function {
     return function(dispatch: Function) {
@@ -43,7 +43,7 @@ export function checkAnswer(levelId: number, questionId: number, answerId: numbe
 
                     loadNextQuestion(dispatch, state)(answerResult, levelId);
                 } else {
-                    dispatch(initGame());
+                    dispatch(loseGame());
                 }
             })
             .catch(() => {
@@ -56,13 +56,11 @@ function loadNextQuestion(dispatch: Function, state: ApplicationState) {
     return function (answerResult: AnswerCheckResult, levelId: number): void {
         const nextLevelId: number = levelId + 1;
 
-        // todo: check game completed instead
-
         if (nextLevelId < state.levels.length) {
             dispatch(loadQuestion(nextLevelId));
             dispatch(addScore(answerResult.score));
         } else {
-            // todo: handle game completed
+            dispatch(winGame());
         }
     };
 }
