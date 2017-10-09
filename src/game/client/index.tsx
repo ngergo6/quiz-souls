@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Main } from "./components/Main";
 import { reducers } from "./reducers";
-import { startApplication } from "./actions/application-lifecycle-actions";
+import { initGame } from "./actions/game-state-actions";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 document.addEventListener("DOMContentLoaded", bootstrap);
@@ -20,5 +20,5 @@ function bootstrap() {
 		document.getElementById("app")
 	);
 
-	store.dispatch(startApplication() as any);
+	store.dispatch(initGame() as any);
 }

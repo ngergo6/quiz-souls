@@ -2,9 +2,10 @@ import { LOAD_QUESTION_FAILURE, LOAD_QUESTION_SUCCESS } from "./action-names";
 import { Action } from "../types/Action";
 import { ServerQuestion } from "../types/ServerQuestion";
 import { AnswerCheckResult } from "../types/AnswerCheckResult";
-import { addScore, resetScore } from "./score-actions";
+import { addScore  } from "./score-actions";
 import { getQuestionByLevel, checkAnswer as checkAnswerApi } from "../api-clients/questions-client";
 import { ApplicationState } from "../reducers/ApplicationState";
+import { initGame } from "./game-state-actions";
 
 export function loadQuestion(level: number): Function {
     return function(dispatch: Function) {
@@ -40,10 +41,9 @@ export function checkAnswer(levelId: number, questionId: number, answerId: numbe
                 if (answerResult.isCorrect) {
                     const state = getState();
 
-                    getLoadNextQuestion(dispatch, state)(answerResult, levelId);
+                    loadNextQuestion(dispatch, state)(answerResult, levelId);
                 } else {
-                    dispatch(resetScore());
-                    dispatch(loadQuestion(0));
+                    dispatch(initGame());
                 }
             })
             .catch(() => {
@@ -52,7 +52,7 @@ export function checkAnswer(levelId: number, questionId: number, answerId: numbe
             });
 }
 
-function getLoadNextQuestion(dispatch: Function, state: ApplicationState) {
+function loadNextQuestion(dispatch: Function, state: ApplicationState) {
     return function (answerResult: AnswerCheckResult, levelId: number): void {
         const nextLevelId: number = levelId + 1;
 
