@@ -9,5 +9,10 @@ export function getLevels(): Promise<ServerLevel[]> {
 
             return response;
         })
-        .then(response => response.json());
+        .then<ServerLevel[]>(response => response.json())
+        .then(data => data.map(serverLevel => ({
+            id: Number(serverLevel.id),
+            score: serverLevel.score,
+            text: serverLevel.text
+        } as ServerLevel)));
 }

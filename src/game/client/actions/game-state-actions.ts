@@ -3,11 +3,13 @@ import { INIT_GAME, START_GAME, WIN_GAME, LOSE_GAME } from "./action-names";
 import { fetchLevels } from "./levels-actions";
 import { loadQuestion } from "./current-question-actions";
 import { resetScore } from "./score-actions";
+import { resetCurrentLevel } from "./current-level-actions";
 
 export function initGame(): Function {
     return function(dispatch: Function) {
         dispatch(fetchLevels());
         dispatch(resetScore());
+        dispatch(resetCurrentLevel());
 
         dispatch({
             type: INIT_GAME

@@ -6,6 +6,7 @@ import { addScore  } from "./score-actions";
 import { getQuestionByLevel, checkAnswer as checkAnswerApi } from "../api-clients/questions-client";
 import { ApplicationState } from "../reducers/ApplicationState";
 import { initGame, loseGame, winGame } from "./game-state-actions";
+import { advanceCurrentLevel } from "./current-level-actions";
 
 export function loadQuestion(level: number): Function {
     return function(dispatch: Function) {
@@ -41,6 +42,7 @@ export function checkAnswer(levelId: number, questionId: number, answerId: numbe
                 if (answerResult.isCorrect) {
                     const state = getState();
 
+                    dispatch(advanceCurrentLevel());
                     loadNextQuestion(dispatch, state)(answerResult, levelId);
                 } else {
                     dispatch(loseGame());

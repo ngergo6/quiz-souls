@@ -1,6 +1,7 @@
 import * as React from "react";
 import { CurrentQuestion } from "./CurrentQuestion";
 import { Score } from "./Score";
+import { Levels } from "./Levels";
 
 export function Game() {
 	return (
@@ -10,6 +11,7 @@ export function Game() {
 			</div>
 			<div className="col-md-2">
 				<Score />
+				<Levels />
 			</div>
 		</div>
 	);

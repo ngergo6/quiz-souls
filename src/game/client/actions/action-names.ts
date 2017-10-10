@@ -10,3 +10,6 @@ export const INIT_GAME = "INIT_GAME";
 export const START_GAME = "START_GAME";
 export const LOSE_GAME = "LOST_GAME";
 export const WIN_GAME = "WIN_GAME";
+
+export const ADVANCE_CURRENT_LEVEL = "ADVANCE_LEVEL";
+export const RESET_CURRENT_LEVEL = "RESET_LEVEL";
