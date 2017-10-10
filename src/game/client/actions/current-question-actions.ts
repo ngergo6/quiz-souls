@@ -43,6 +43,7 @@ export function checkAnswer(levelId: number, questionId: number, answerId: numbe
                     const state = getState();
 
                     dispatch(advanceCurrentLevel());
+                    dispatch(addScore(answerResult.score));
                     loadNextQuestion(dispatch, state)(answerResult, levelId);
                 } else {
                     dispatch(loseGame());
@@ -60,7 +61,6 @@ function loadNextQuestion(dispatch: Function, state: ApplicationState) {
 
         if (nextLevelId < state.levels.length) {
             dispatch(loadQuestion(nextLevelId));
-            dispatch(addScore(answerResult.score));
         } else {
             dispatch(winGame());
         }

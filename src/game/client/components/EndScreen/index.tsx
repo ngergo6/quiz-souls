@@ -14,7 +14,7 @@ export const EndScreen = connect(
 
 function mapStateToProps(state: ApplicationState, ownProps: any): EndScreenComponentDataProps {
     return {
-        resultComponent: getEndScreen(state.gameState)
+        resultComponent: getEndScreen(state.gameState, state.score)
     } as EndScreenComponentDataProps;
 }
 
@@ -24,10 +24,10 @@ function mapDispatchToProps(dispatch: Function): EndScreenComponentActions {
     } as EndScreenComponentActions;
 }
 
-function getEndScreen(gameState: GameState): React.ReactElement<any> {
+function getEndScreen(gameState: GameState, score: number): React.ReactElement<any> {
     switch (gameState) {
         case "game-over-won":
-            return <WonComponent />
+            return <WonComponent score={score} />
         case "game-over-lost":
             return <LostComponent />
         default:
