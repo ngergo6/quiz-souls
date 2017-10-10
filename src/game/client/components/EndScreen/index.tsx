@@ -29,7 +29,7 @@ function getEndScreen(gameState: GameState, score: number): React.ReactElement<a
         case "game-over-won":
             return <WonComponent score={score} />
         case "game-over-lost":
-            return <LostComponent />
+            return <LostComponent score={score} />
         default:
             <div />
     }
