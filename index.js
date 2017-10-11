@@ -1,17 +1,18 @@
 const process = require("process");
 const http = require("http");
 const express = require("express");
-const socketio = require("socket.io");
 const dotenv = require("dotenv");
 
 const game = require("./src/game");
 const overlay = require("./src/overlay");
+const socket = require("./src/socket");
 
 dotenv.config();
 
 const app = express();
 const server = http.Server(app);
-const io = socketio(server);
+
+socket.use(server);
 
 app.use("/game", game);
 app.use("/overlay", overlay);
