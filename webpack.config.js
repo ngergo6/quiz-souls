@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
     entry: {
         game: "./src/game/client/index.tsx",
-        overlay: "./src/overlay/client/index.js"
+        overlay: "./src/overlay/client/index.tsx"
     },
     output: {
         filename: "[name]/public/dist/bundle.js",
