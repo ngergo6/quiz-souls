@@ -4,6 +4,10 @@ import { fetchLevels } from "./levels-actions";
 import { loadQuestion } from "./current-question-actions";
 import { resetScore } from "./score-actions";
 import { resetCurrentLevel } from "./current-level-actions";
+import { ApplicationState } from "../reducers/ApplicationState";
+
+import { dispatchSocket } from "../socket/index";
+import { startGame as startGameSocket } from "../socket/actions/game-state-actions";
 
 export function initGame(): Function {
     return function(dispatch: Function) {
@@ -18,12 +22,15 @@ export function initGame(): Function {
 }
 
 export function startGame(): Function {
-    return function(dispatch: Function) {
+    return function(dispatch: Function, getState: () => ApplicationState) {
         dispatch(loadQuestion(0));
 
         dispatch({
             type: START_GAME
         });
+
+        const state = getState();
+        dispatchSocket(startGameSocket(state.userInfo.userId, state.userInfo.playerName));
     };
 }
 

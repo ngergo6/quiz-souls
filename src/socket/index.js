@@ -1,5 +1,7 @@
 const socketio = require("socket.io");
 
+const gameStateHandler = require("./handlers/game-state-handler");
+
 /**
  * @param server *
  */
@@ -9,9 +11,7 @@ function bootstrap(server) {
     io.on("connection", function(socket) {
         console.log("a user connected");
 
-        socket.on("handshake", function(data) {
-            console.log("handshake", data);
-        });
+        gameStateHandler(socket);
     });
 }
 
