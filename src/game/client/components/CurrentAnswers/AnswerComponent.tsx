@@ -6,19 +6,28 @@ export interface AnswerProps {
     letter: string;
     levelId: number;
     questionId: number;
+    isMarked: boolean;
+    isDisabled: boolean;
 
     submitAnswer: Function;
 }
 
-function onClick(submitAnswer: Function) {
+function onClick(submitAnswer: Function, isDisabled: boolean) {
     return (event: React.MouseEvent<HTMLButtonElement>) => {
-        submitAnswer();
+        if (!isDisabled) {
+            submitAnswer();
+        }
+
         event.currentTarget.blur();
     };
 }
 
-export function AnswerComponent({ text, letter, submitAnswer }: AnswerProps) {
+export function AnswerComponent({ text, letter, submitAnswer, isMarked, isDisabled }: AnswerProps) {
+    const btnClass = isMarked
+        ? "btn-warning"
+        : isDisabled ? "btn-secondary" : "btn-primary";
+
     return (
-        <button style={{width: "100%"}} className="btn btn-primary" onClick={onClick(submitAnswer)}>{letter.toUpperCase()}: {text}</button>
+        <button style={{width: "100%"}} className={`btn ${btnClass}`} onClick={onClick(submitAnswer, isDisabled)}>{letter.toUpperCase()}: {text}</button>
     );
 }

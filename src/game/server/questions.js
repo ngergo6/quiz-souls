@@ -69,7 +69,8 @@ function getLevels(req, res) {
     res.json(levels.map(level => ({
         id: level.id,
         text: level.text,
-        score: level.score
+		score: level.score,
+		timeout: level.timeout
     })));
 }
 

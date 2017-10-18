@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { ApplicationState } from "../../reducers/ApplicationState";
 import { AnswersListComponent, AnswersListDataProps, AnswerListActions } from "./AnswersListComponent";
 import { AnswerProps } from "./AnswerComponent";
-import { checkAnswer } from "../../actions/current-question-actions";
+import { markAnswer } from "../../actions/current-question-actions";
 
 export const CurrentAnswers = connect(
     mapStateToProps,
@@ -16,7 +16,8 @@ function mapStateToProps(state: ApplicationState) {
         answers: state.currentQuestion.answers.map((answer, index) => ({
             text: answer.text,
             id: answer.id,
-            letter: String.fromCharCode(a + index)
+            letter: String.fromCharCode(a + index),
+            isMarked: answer.isMarked
         })),
         levelId: state.currentQuestion.level,
         questionId: state.currentQuestion.id
@@ -26,7 +27,7 @@ function mapStateToProps(state: ApplicationState) {
 function mapDispatchToProps(dispatch: Function) {
     return {
         submitAnswer: (levelId: number, questionId: number, answerId: number) => { 
-            dispatch(checkAnswer(levelId, questionId, answerId));
+            dispatch(markAnswer(levelId, questionId, answerId));
         }
     } as AnswerListActions;
 }

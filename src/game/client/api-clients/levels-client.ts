@@ -13,6 +13,7 @@ export function getLevels(): Promise<ServerLevel[]> {
         .then(data => data.map(serverLevel => ({
             id: Number(serverLevel.id),
             score: serverLevel.score,
-            text: serverLevel.text
+            text: serverLevel.text,
+            timeout: serverLevel.timeout
         } as ServerLevel)));
 }
