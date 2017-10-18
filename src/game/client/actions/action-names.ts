@@ -17,3 +17,5 @@ export const WIN_GAME = "WIN_GAME";
 
 export const ADVANCE_CURRENT_LEVEL = "ADVANCE_LEVEL";
 export const RESET_CURRENT_LEVEL = "RESET_LEVEL";
+
+export const SET_USER_INFO = "SET_USER_ID";

@@ -1,6 +1,6 @@
 import { Action } from "../types/Action";
 import { ADD_SCORE, RESET_SCORE } from "../actions/action-names";
-import { addScore, AddScoreAction } from "../actions/score-actions";
+import { AddScoreAction } from "../actions/score-actions";
 
 export function scoreReducer(state: number = 0, action: Action) {
     switch(action.type) {

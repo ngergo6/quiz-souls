@@ -4,6 +4,7 @@ import { scoreReducer } from "./score-reducer";
 import { levelsReducer } from "./levels-reducer";
 import { gameStateReducer } from "./game-state-reducer";
 import { currentLevelReducer } from "./current-level-reducer";
+import { userInfoReducer } from "./user-info-reducer";
 import { ApplicationState } from "./ApplicationState";
 
 export const reducers = combineReducers({
@@ -11,5 +12,6 @@ export const reducers = combineReducers({
     score: scoreReducer,
     levels: levelsReducer,
     gameState: gameStateReducer,
-    currentLevelId: currentLevelReducer
+    currentLevelId: currentLevelReducer,
+    userInfo: userInfoReducer
 });
