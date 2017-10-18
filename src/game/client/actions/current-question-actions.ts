@@ -56,7 +56,7 @@ export function markAnswer(levelId: number, questionId: number, answerId: number
     };
 }
 
-export function checkAnswer(levelId: number, questionId: number, answerId: number): Function {
+function checkAnswer(levelId: number, questionId: number, answerId: number): Function {
     return (dispatch: Function, getState: () => ApplicationState) => 
         checkAnswerApi(levelId, questionId, answerId)
             .then((answerResult: AnswerCheckResult) => {
