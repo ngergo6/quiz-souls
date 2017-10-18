@@ -1,18 +1,8 @@
 import { Action } from "../types/Action";
 import { LOAD_QUESTION_FAILURE, LOAD_QUESTION_SUCCESS } from "../actions/action-names";
 import { LoadQuestionResultAction } from "../actions/current-question-actions";
-
-export interface CurrentQuestion {
-    text: string;
-    answers: Answer[];
-    level: number;
-    id: number;
-}
-
-export interface Answer {
-    text: string;
-    id: number;
-}
+import { CurrentQuestion } from "../types/CurrentQuestion";
+import { Answer } from "../types/Answer";
 
 export function currentQuestionReducer(state: CurrentQuestion, action: Action): CurrentQuestion {
     if (typeof state === "undefined") {

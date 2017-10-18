@@ -1,4 +1,4 @@
-import { CurrentQuestion } from "./current-question-reducer";
+import { CurrentQuestion } from "../types/CurrentQuestion";
 import { ServerLevel } from "../types/ServerLevel";
 import { GameState } from "../types/GameState";
 
