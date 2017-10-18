@@ -104,19 +104,23 @@
 	"levels": {
 		"0": {
 			"text": "Level 0",
-			"score": 1000
+			"score": 1000,
+			"timeout": 1000
 		},
 		"1": {
 			"text": "Level 1",
-			"score": 3000
+			"score": 3000,
+			"timeout": 2000
 		},
 		"2": {
 			"text": "Level 2",
-			"score": 5000
+			"score": 5000,
+			"timeout": 3000
 		},
 		"3": {
 			"text": "Level 3",
-			"score": 10000
+			"score": 10000,
+			"timeout": 4000
 		}
     }
 }
