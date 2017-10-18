@@ -1,4 +1,4 @@
-import { LOAD_QUESTION_FAILURE, LOAD_QUESTION_SUCCESS, MARK_ANSWER } from "./action-names";
+import { LOAD_QUESTION_FAILURE, LOAD_QUESTION_SUCCESS, MARK_ANSWER_SELECTED, MARK_ANSWER_CORRECT, MARK_ANSWER_WRONG } from "./action-names";
 import { Action } from "../types/Action";
 import { ServerQuestion } from "../types/ServerQuestion";
 import { AnswerCheckResult } from "../types/AnswerCheckResult";
@@ -41,10 +41,7 @@ export interface MarkAnswerAction extends Action {
 
 export function markAnswer(levelId: number, questionId: number, answerId: number): Function {
     return (dispatch: Function, getState: () => ApplicationState) => {
-        dispatch({
-            answerId: answerId,
-            type: MARK_ANSWER
-        } as MarkAnswerAction);
+        dispatch(markAsnwerAsSelected(answerId));
 
         const state = getState();
 
@@ -56,18 +53,45 @@ export function markAnswer(levelId: number, questionId: number, answerId: number
     };
 }
 
+function markAsnwerAsSelected(answerId: number): MarkAnswerAction {
+    return {
+        type: MARK_ANSWER_SELECTED,
+        answerId
+    };
+}
+
+function markAnswerAsCorrect(answerId: number): MarkAnswerAction {
+    return {
+        type: MARK_ANSWER_CORRECT,
+        answerId
+    };
+}
+
+function markAnswerAsWrong(answerId: number): MarkAnswerAction {
+    return {
+        type: MARK_ANSWER_WRONG,
+        answerId
+    };
+}
+
 function checkAnswer(levelId: number, questionId: number, answerId: number): Function {
     return (dispatch: Function, getState: () => ApplicationState) => 
         checkAnswerApi(levelId, questionId, answerId)
             .then((answerResult: AnswerCheckResult) => {
                 if (answerResult.isCorrect) {
-                    const state = getState();
-
-                    dispatch(advanceCurrentLevel());
-                    dispatch(addScore(answerResult.score));
-                    loadNextQuestion(dispatch, state)(answerResult, levelId);
+                    dispatch(markAnswerAsCorrect(answerId));
+                    setTimeout(() => {
+                        const state = getState();
+                        
+                        dispatch(advanceCurrentLevel());
+                        dispatch(addScore(answerResult.score));
+                        loadNextQuestion(dispatch, state)(answerResult, levelId);
+                    }, 1500);
                 } else {
-                    dispatch(loseGame());
+                    dispatch(markAnswerAsWrong(answerId));
+                    setTimeout(() => {
+                        dispatch(loseGame());
+                    }, 3000);
                 }
             })
             .catch(() => {

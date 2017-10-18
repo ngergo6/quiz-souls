@@ -1,0 +1,1 @@
+export type AnswerMarkTypes = "none" | "selected" | "correct" | "wrong";

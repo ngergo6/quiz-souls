@@ -1,4 +1,5 @@
 import * as React from "react";
+import { AnswerMarkTypes } from "../../types/AnswerMarkTypes";
 
 export interface AnswerProps {
     text: string;
@@ -6,7 +7,7 @@ export interface AnswerProps {
     letter: string;
     levelId: number;
     questionId: number;
-    isMarked: boolean;
+    markedAs: AnswerMarkTypes;
     isDisabled: boolean;
 
     submitAnswer: Function;
@@ -22,10 +23,26 @@ function onClick(submitAnswer: Function, isDisabled: boolean) {
     };
 }
 
-export function AnswerComponent({ text, letter, submitAnswer, isMarked, isDisabled }: AnswerProps) {
-    const btnClass = isMarked
-        ? "btn-warning"
-        : isDisabled ? "btn-secondary" : "btn-primary";
+function getButtonClass(markedAs: AnswerMarkTypes, isDisabled: boolean) {
+    if (isDisabled && markedAs === "none") {
+        return "btn-secondary";
+    }
+
+    switch(markedAs) {
+        case "correct":
+            return "btn-success";
+        case "wrong":
+            return "btn-danger";
+        case "selected":
+            return "btn-warning";
+        case "none":
+        default:
+            return "btn-primary";
+    }
+}
+
+export function AnswerComponent({ text, letter, submitAnswer, markedAs, isDisabled }: AnswerProps) {
+    const btnClass = getButtonClass(markedAs, isDisabled);
 
     return (
         <button style={{width: "100%"}} className={`btn ${btnClass}`} onClick={onClick(submitAnswer, isDisabled)}>{letter.toUpperCase()}: {text}</button>

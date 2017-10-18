@@ -1,11 +1,11 @@
 import * as React from "react";
 import { AnswerComponent, AnswerProps } from "./AnswerComponent";
+import { AnswerMarkTypes } from "../../types/AnswerMarkTypes";
 
 export interface AnswersListDataProps {
 	answers: AnswerProps[];
 	levelId: number;
 	questionId: number;
-	isMarked: boolean;
 }
 
 export interface AnswerListActions {
@@ -19,11 +19,11 @@ function renderAnswer(answer: AnswerProps, levelId: number, questionId: number, 
 		return "";
 	}
 
-	const { text, id, letter, isMarked } = answer;
+	const { text, id, letter, markedAs } = answer;
 
 	return <AnswerComponent
 				isDisabled={isDisabled}
-				isMarked={isMarked}
+				markedAs={markedAs}
 				text={text}
 				id={id}
 				letter={letter}
@@ -33,7 +33,7 @@ function renderAnswer(answer: AnswerProps, levelId: number, questionId: number, 
 }
 
 export function AnswersListComponent({ answers, submitAnswer, levelId, questionId }: AnswerListProps) {
-	const disableAnswers = answers.some(a => a.isMarked);
+	const disableAnswers = answers.some(a => a.markedAs !== "none");
 
 	return (
 		<div>

@@ -17,7 +17,7 @@ function mapStateToProps(state: ApplicationState) {
             text: answer.text,
             id: answer.id,
             letter: String.fromCharCode(a + index),
-            isMarked: answer.isMarked
+            markedAs: answer.markedAs
         })),
         levelId: state.currentQuestion.level,
         questionId: state.currentQuestion.id
