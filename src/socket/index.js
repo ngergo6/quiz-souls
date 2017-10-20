@@ -11,7 +11,7 @@ function bootstrap(server) {
     io.on("connection", function(socket) {
         console.log("a user connected");
 
-        gameStateHandler(socket);
+        gameStateHandler(io, socket);
     });
 }
 

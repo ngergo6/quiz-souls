@@ -1,5 +1,8 @@
-module.exports = function(socket) {
-    socket.on("CLIENT_START_GAME", action => {
-        console.log("client start game", action);
-    });
+const actionNames = require("../actions/action-names");
+const getRerouter = require("./rerouter");
+
+module.exports = function(io, socket) {
+    const reroute = getRerouter(io, socket);
+
+    reroute(actionNames.names.START_GAME);
 }
