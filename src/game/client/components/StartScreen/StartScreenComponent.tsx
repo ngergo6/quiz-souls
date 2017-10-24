@@ -2,6 +2,7 @@ import * as React from "react";
 
 export interface StartScreenComponentDataProps {
     playerName: string;
+    userId: string;
 }
 
 export interface StartScreenComponentActions {
@@ -47,7 +48,7 @@ export class StartScreenComponent extends React.Component<StartScreenComponentPr
     }
 
     public render() {
-        const { startGame } = this.props;
+        const { startGame, userId } = this.props;
         const { isStartEnabled, playerName } = this.state;
 
         return (
@@ -56,12 +57,17 @@ export class StartScreenComponent extends React.Component<StartScreenComponentPr
                 <p>Your goal is to defeat the enemies by answering the questions.</p>
                 <p>Killing enemies will grant you souls.</p>
     
-                <h3>Type your name so we can start the game</h3>
+                <h3>Enter your name</h3>
                 
                 <div className="row">
                     <div className="col col-sm-6">
                         <div className="form-group">
                             <input className="form-control" type="text" onChange={this.handleChange} value={playerName}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="overlay-url">Your overlay url: </label>
+                            <input id="overlay-url" type="text" className="form-control" readOnly value={getOverlayUrl(userId)}/>
                         </div>
                     </div>
                 </div>
@@ -70,4 +76,20 @@ export class StartScreenComponent extends React.Component<StartScreenComponentPr
             </div>
         );
     }
+}
+
+function getOverlayUrl(userId: string): string {
+    const location = window.location.toString();
+    
+    const overlayLocation = location.replace("/game", "/overlay");
+
+    const builder = [overlayLocation];
+
+    if (!overlayLocation.endsWith("/")) {
+        builder.push("/");
+    }
+
+    builder.push(`?userId=${encodeURI(userId)}`);
+
+    return builder.join("");
 }

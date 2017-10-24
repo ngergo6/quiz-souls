@@ -4,6 +4,7 @@ import { fetchLevels } from "./levels-actions";
 import { loadQuestion } from "./current-question-actions";
 import { resetScore } from "./score-actions";
 import { resetCurrentLevel } from "./current-level-actions";
+import { setUserId } from "./user-info-actions";
 import { ApplicationState } from "../reducers/ApplicationState";
 
 import { dispatchSocket } from "../socket/index";
@@ -11,6 +12,7 @@ import { startGame as startGameSocket, wonGame, lostGame } from "../socket/actio
 
 export function initGame(): Function {
     return function(dispatch: Function) {
+        dispatch(setUserId());
         dispatch(fetchLevels());
         dispatch(resetScore());
         dispatch(resetCurrentLevel());

@@ -11,6 +11,11 @@ function bootstrap(server) {
     io.on("connection", function(socket) {
         console.log("a user connected");
 
+        socket.on("$_join_room", (userId) => {
+            console.log("join room", userId);
+            socket.join(userId);
+        });
+
         gameStateHandler(io, socket);
     });
 }

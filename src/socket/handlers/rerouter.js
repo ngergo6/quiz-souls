@@ -7,7 +7,9 @@ module.exports = function(io, socket) {
 	 */
 	function rerouteToClient(actionName) {
 		socket.on(actionNames.client(actionName), (action) => {
-			io.emit(actionNames.server(actionName), action);
+			socket
+				.to(action.userId)
+				.emit(actionNames.server(actionName), action);
 		});
 	};
 
