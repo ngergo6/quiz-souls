@@ -4,9 +4,17 @@ import { server, names } from "../../../../socket/actions/action-names";
 import { StartGameAction } from "../../../../socket/actions/game-state-actions";
 
 export function notificationLogSubscriber(socket: SocketIOClient.Socket, store: Store<{}>): void {
-    console.log("subscribe to", server(names.START_GAME));
+    const subscribe = makeSubscriber(socket, store);
 
-    socket.on(server(names.START_GAME), (action: StartGameAction) => {
-        store.dispatch(addNotification(action.type, action));
-    });
+    subscribe(names.START_GAME);
+    subscribe(names.LOSE_GAME);
+    subscribe(names.WIN_GAME);
+}
+
+function makeSubscriber(socket: SocketIOClient.Socket, store: Store<{}>) {
+    return function(actionName: string) {
+        socket.on(server(actionName), action => {
+            store.dispatch(addNotification(action.type, action));
+        });
+    }
 }

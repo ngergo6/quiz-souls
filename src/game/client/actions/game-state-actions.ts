@@ -7,7 +7,7 @@ import { resetCurrentLevel } from "./current-level-actions";
 import { ApplicationState } from "../reducers/ApplicationState";
 
 import { dispatchSocket } from "../socket/index";
-import { startGame as startGameSocket } from "../socket/actions/game-state-actions";
+import { startGame as startGameSocket, wonGame, lostGame } from "../socket/actions/game-state-actions";
 
 export function initGame(): Function {
     return function(dispatch: Function) {
@@ -34,14 +34,24 @@ export function startGame(): Function {
     };
 }
 
-export function winGame(): Action {
-    return {
-        type: WIN_GAME
+export function winGame(): Function {
+    return function(dispatch: Function, getState: () => ApplicationState) {
+        dispatch({
+            type: WIN_GAME
+        });
+
+        const state = getState();
+        dispatchSocket(wonGame(state.userInfo.userId, state.score));
     };
 }
 
-export function loseGame(): Action {
-    return {
-        type: LOSE_GAME
+export function loseGame(): Function {
+    return function(dispatch: Function, getState: () => ApplicationState) {
+        dispatch({
+            type: LOSE_GAME
+        });
+
+        const state = getState();
+        dispatchSocket(lostGame(state.userInfo.userId, state.score));
     };
 }
