@@ -2,6 +2,7 @@ const socketio = require("socket.io");
 
 const gameStateHandler = require("./handlers/game-state-handler");
 const currentQuestionHandler = require("./handlers/current-question-handler");
+const scoreHandler = require("./handlers/score-handler");
 
 /**
  * @param server *
@@ -19,7 +20,8 @@ function bootstrap(server) {
 
         registerHandlers(io, socket, [
             gameStateHandler,
-            currentQuestionHandler
+            currentQuestionHandler,
+            scoreHandler
         ]);
     });
 }

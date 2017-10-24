@@ -14,6 +14,9 @@ export function notificationLogSubscriber(socket: SocketIOClient.Socket, store: 
     subscribe(names.MARK_ANSWER_CORRECT);
     subscribe(names.MARK_ANSWER_SELECTED);
     subscribe(names.MARK_ANSWER_WRONG);
+
+    subscribe(names.ADD_SCORE);
+    subscribe(names.RESET_SCORE);
 }
 
 function makeSubscriber(socket: SocketIOClient.Socket, store: Store<{}>) {
