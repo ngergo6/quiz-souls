@@ -8,6 +8,14 @@ import { ApplicationState } from "../reducers/ApplicationState";
 import { initGame, loseGame, winGame } from "./game-state-actions";
 import { advanceCurrentLevel } from "./current-level-actions";
 
+import { dispatchSocket } from "../socket";
+import {
+    loadQuestion as loadQuestionSocket,
+    markAnswerCorrect as markAnswerCorrectSocket,
+    markAnswerSelected as markAnswerSelectedSocket,
+    markAnswerWrong as markAnswerWrongSocket
+} from "../socket/actions/current-question-actions";
+
 export function loadQuestion(level: number): Function {
     return function(dispatch: Function) {
         return getQuestionByLevel(level)
@@ -21,12 +29,17 @@ export interface LoadQuestionResultAction extends Action {
     level: number;
 }
 
-export function loadQuestionSuccess(question: ServerQuestion, level: number): LoadQuestionResultAction {
-    return {
-        type: LOAD_QUESTION_SUCCESS,
-        question,
-        level
-    }
+export function loadQuestionSuccess(question: ServerQuestion, level: number): Function {
+    return (dispatch: Function, getState: () => ApplicationState) => {
+        dispatch({
+            type: LOAD_QUESTION_SUCCESS,
+            question,
+            level
+        } as LoadQuestionResultAction);
+
+        const state = getState();
+        dispatchSocket(loadQuestionSocket(state.userInfo.userId, question, level));
+    };
 }
 
 export function loadQuestionFailure(): Action {
@@ -53,24 +66,39 @@ export function markAnswer(levelId: number, questionId: number, answerId: number
     };
 }
 
-function markAsnwerAsSelected(answerId: number): MarkAnswerAction {
-    return {
-        type: MARK_ANSWER_SELECTED,
-        answerId
+function markAsnwerAsSelected(answerId: number): Function {
+    return (dispatch: Function, getState: () => ApplicationState) => {
+        dispatch({
+            type: MARK_ANSWER_SELECTED,
+            answerId
+        } as MarkAnswerAction);
+
+        const state = getState();
+        dispatchSocket(markAnswerSelectedSocket(state.userInfo.userId, answerId));
     };
 }
 
-function markAnswerAsCorrect(answerId: number): MarkAnswerAction {
-    return {
-        type: MARK_ANSWER_CORRECT,
-        answerId
+function markAnswerAsCorrect(answerId: number): Function {
+    return (dispatch: Function, getState: () => ApplicationState) => {
+        dispatch({
+            type: MARK_ANSWER_CORRECT,
+            answerId
+        } as MarkAnswerAction);
+
+        const state = getState();
+        dispatchSocket(markAnswerCorrectSocket(state.userInfo.userId, answerId));
     };
 }
 
-function markAnswerAsWrong(answerId: number): MarkAnswerAction {
-    return {
-        type: MARK_ANSWER_WRONG,
-        answerId
+function markAnswerAsWrong(answerId: number): Function {
+    return (dispatch: Function, getState: () => ApplicationState) => {
+        dispatch({
+            type: MARK_ANSWER_WRONG,
+            answerId
+        } as MarkAnswerAction);
+
+        const state = getState();
+        dispatchSocket(markAnswerWrongSocket(state.userInfo.userId, answerId));
     };
 }
 

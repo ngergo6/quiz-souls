@@ -9,6 +9,11 @@ export function notificationLogSubscriber(socket: SocketIOClient.Socket, store: 
     subscribe(names.START_GAME);
     subscribe(names.LOSE_GAME);
     subscribe(names.WIN_GAME);
+
+    subscribe(names.LOAD_QUESTION);
+    subscribe(names.MARK_ANSWER_CORRECT);
+    subscribe(names.MARK_ANSWER_SELECTED);
+    subscribe(names.MARK_ANSWER_WRONG);
 }
 
 function makeSubscriber(socket: SocketIOClient.Socket, store: Store<{}>) {

@@ -1,6 +1,7 @@
 const socketio = require("socket.io");
 
 const gameStateHandler = require("./handlers/game-state-handler");
+const currentQuestionHandler = require("./handlers/current-question-handler");
 
 /**
  * @param server *
@@ -16,7 +17,16 @@ function bootstrap(server) {
             socket.join(userId);
         });
 
-        gameStateHandler(io, socket);
+        registerHandlers(io, socket, [
+            gameStateHandler,
+            currentQuestionHandler
+        ]);
+    });
+}
+
+function registerHandlers(io, socket, handlers) {
+    handlers.forEach(handler => {
+        handler(io, socket);
     });
 }
 
